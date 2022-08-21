@@ -12,7 +12,7 @@ export default function loginHandler(req, res) {
   // ! Making HARDCODE (code for development)
 
   try {
-    if (email === "admin@local.local" && password === "admin") {
+    if (userEmail === "admin@local.local" && userPassword === "admin") {
       const _token = jwt.sign(
         {
           exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
@@ -32,6 +32,10 @@ export default function loginHandler(req, res) {
       return res.json({
         success: true,
         message: "Login Succesfully",
+        userData: {
+          email: userEmail,
+          password: userPassword,
+        },
       });
     } else {
       throw new Error("Invalid email or password");
