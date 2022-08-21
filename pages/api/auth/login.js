@@ -21,7 +21,7 @@ export default function loginHandler(req, res) {
         },
         "secret"
       );
-      const token = serialize("myTokenName", _token, {
+      const token = serialize("userToken", _token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",

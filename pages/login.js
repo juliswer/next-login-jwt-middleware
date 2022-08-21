@@ -8,7 +8,6 @@ function LoginPage() {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setUser({
       ...user,
       [e.target.name]: e.target.value,
@@ -17,7 +16,6 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
     const _res = await axios.post("/api/auth/login", user);
     console.log(_res);
   };
