@@ -2,14 +2,14 @@ import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 
 export default function loginHandler(req, res) {
-  const { email, password } = req.body;
-
-  // ! Making HARDCODE (code for development)
+  const { email: userEmail, password: userPassword } = req.body;
 
   // Math.floor(Date.now() / 1000) + 60 === 1 minute from now
   // Math.floor(Date.now() / 1000) + 60 * 60 === 1 hour from now
   // Math.floor(Date.now() / 1000) + 60 * 60 * 24 === 1 day from now
   // Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30 === 1 month from now
+
+  // ! Making HARDCODE (code for development)
 
   try {
     if (email === "admin@local.local" && password === "admin") {
@@ -34,7 +34,7 @@ export default function loginHandler(req, res) {
         message: "Login Succesfully",
       });
     } else {
-        throw new Error("Invalid email or password");
+      throw new Error("Invalid email or password");
     }
   } catch (error) {
     console.log(error);
