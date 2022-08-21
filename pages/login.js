@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function LoginPage() {
   const [user, setUser] = useState({
@@ -14,9 +15,11 @@ function LoginPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
+    const _res = await axios.post("/api/auth/login", user);
+    console.log(_res);
   };
 
   return (
