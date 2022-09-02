@@ -8,15 +8,30 @@ function DashboardPage() {
   });
 
   const getProfile = async () => {
-    const response = await axios.get("/api/profile");
-    setUser(response.data);
+    try {
+      const response = await axios.get("/api/profile");
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await axios.get("/api/auth/logout");
+    } catch (error) {
+      console.error(error.message);
+    }
+    // router.push("/login");
   };
 
   return (
     <>
       <h1>Dashboard</h1>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
 
       <button onClick={() => getProfile()}>Get Profile</button>
+      <button onClick={() => logout()}>Logout</button>
     </>
   );
 }
