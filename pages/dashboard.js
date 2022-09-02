@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function DashboardPage() {
+  const router = useRouter();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -16,13 +19,17 @@ function DashboardPage() {
     }
   };
 
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   const logout = async () => {
     try {
       await axios.get("/api/auth/logout");
     } catch (error) {
       console.error(error.message);
     }
-    // router.push("/login");
+    router.push("/login");
   };
 
   return (
