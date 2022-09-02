@@ -1,9 +1,15 @@
+import { useState } from "react";
 import axios from "axios";
 
 function DashboardPage() {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
   const getProfile = async () => {
     const response = await axios.get("/api/profile");
-    console.log(response);
+    setUser(response.data);
   };
 
   return (
