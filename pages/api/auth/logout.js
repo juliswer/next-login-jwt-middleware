@@ -10,7 +10,7 @@ export default function logoutHandler(req, res) {
       error: "Token does not exist",
     });
   }
-  
+
   try {
     const serialized = serialize("userToken", null, {
       httpOnly: true,
